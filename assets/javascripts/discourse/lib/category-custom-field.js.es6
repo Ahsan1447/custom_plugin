@@ -3,7 +3,8 @@ function fieldInputTypes(fieldType) {
     isBoolean: fieldType === 'boolean',
     isString: fieldType === 'string',
     isInteger: fieldType === 'integer',
-    isJson: fieldType === 'json'
+    isJson: fieldType === 'json',
+    isSelect: fieldType === 'select'
   }
 }
 

@@ -2,15 +2,19 @@ plugins:
   category_custom_field_enabled:
     default: true
     client: true
-  category_custom_field_name:
-    default: 'my_field'
-    client: true
-  category_custom_field_type:
-    default: 'boolean'
+  post_view_enabled:
+    default: 'list'
     client: true
     type: enum
     choices:
-      - string
-      - integer
-      - boolean
-      - json
+      - grid
+      - list
+  tabs_view_enabled:
+    default: true
+    client: true
+  user_can_create_post_enabled:
+    default: true
+    client: true
+  show_main_post_enabled:
+    default: false
+    client: true

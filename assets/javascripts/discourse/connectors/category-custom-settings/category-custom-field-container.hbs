@@ -1,64 +1,37 @@
-<h3>{{fieldHeading}}</h3>
+<h3>Post View Settings</h3>
+<section class='field'>
+  <label>Post View Layout</label>
+  <div class="controls">
+    <select value={{categoryModel.custom_fields.post_view}} onchange={{action "onChangePostView" value="target.value"}}>
+      <option value="">Select ....</option>
+      <option value="grid" selected={{eq categoryModel.custom_fields.post_view "grid"}}>Grid View</option>
+      <option value="list" selected={{eq categoryModel.custom_fields.post_view "list"}}>List View</option>
+  </select>
+  </div>
+</section>
 
-{{#if isBoolean}}
-  <section class='field'>
-    <label>
-      {{input
-        type="checkbox"
-        checked=(readonly fieldValue)
-        click=(action "onChangeField" value="target.checked")
-      }}
-      {{fieldName}}
-    </label>
-  </section>
-{{/if}}
+<h3>Tabs View Settings</h3>
+<section class='field'>
+  <label>
+    <input type="checkbox" checked={{categoryModel.custom_fields.tabs_view}} onchange={{action "onChangeTabsView" value="target.checked"}}>
+    Enable Tabs View
+  </label>
+</section>
 
-{{#if isInteger}}
-  <section class='field'>
-    <label>
-      {{fieldName}}
-    </label>
-    <div class="controls">
-      {{input
-        type="number"
-        value=(readonly fieldValue)
-        class="category-custom-field-input small"
-        input=(action "onChangeField" value="target.value")
-        placeholder=(i18n 'category_custom_field.placeholder' field=fieldName)
-      }}
-    </div>
-  </section>
-{{/if}}
 
-{{#if isString}}
-  <section class='field'>
-    <label>
-      {{fieldName}}
-    </label>
-    <div class="controls">
-      {{input
-        type="text"
-        value=(readonly fieldValue)
-        class="category-custom-field-input large"
-        input=(action "onChangeField" value="target.value")
-        placeholder=(i18n 'category_custom_field.placeholder' field=fieldName)
-      }}
-    </div>
-  </section>
-{{/if}}
+<h3>Main Post View</h3>
+<section class='field'>
+  <label>
+    <input type="checkbox" checked={{categoryModel.custom_fields.show_main_post}} onchange={{action "onChangeMainPostView" value="target.checked"}}>
+    Enable Main Post
+  </label>
+</section>
 
-{{#if isJson}}
-  <section class='field'>
-    <label>
-      {{fieldName}}
-    </label>
-    <div class="controls">
-      {{textarea
-        value=(readonly fieldValue)
-        class="category-custom-field-textarea"
-        change=(action "onChangeField" value="target.value")
-        placeholder=(i18n 'category_custom_field.placeholder' field=fieldName)
-      }}
-    </div>
-  </section>
-{{/if}}
+
+<h3>User Permissions</h3>
+<section class='field'>
+  <label>
+    <input type="checkbox" checked={{categoryModel.custom_fields.user_can_create_post}} onchange={{action "onChangeUserCanCreatePost" value="target.checked"}}>
+    Users Can Create Posts
+  </label>
+</section>

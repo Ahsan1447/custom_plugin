@@ -1,0 +1,11 @@
+en:
+  category_custom_field:
+    post_view:
+      heading: "Post View Settings"
+      label: "Post View Layout"
+    tabs_view:
+      heading: "Tabs View Settings"
+      label: "Enable Tabs View"
+    user_can_create_post:
+      heading: "User Permissions"
+      label: "Users Can Create Posts" 
