@@ -1,0 +1,82 @@
+<div class="banner-admin">
+  <h1>{{i18n "banner.title"}}</h1>
+  <p>{{i18n "banner.description"}}</p>
+
+  <div class="banner-form">
+    <h3>{{i18n "banner.create_new"}}</h3>
+    <div class="control-group">
+      <label>{{i18n "banner.announcement"}}</label>
+      {{input value=newAnnouncement class="banner-announcement" placeholder=(i18n "banner.announcement_placeholder")}}
+    </div>
+    <div class="control-group">
+      <label>{{i18n "banner.button_text"}}</label>
+      {{input value=newButtonText class="banner-button-text" placeholder=(i18n "banner.button_text_placeholder")}}
+    </div>
+    <div class="control-group">
+      <label>{{i18n "banner.button_link"}}</label>
+      {{input value=newButtonLink class="banner-button-link" placeholder=(i18n "banner.button_link_placeholder")}}
+    </div>
+    <div class="control-group">
+      <label>
+        {{input type="checkbox" checked=newActive}}
+        {{i18n "banner.active"}}
+      </label>
+    </div>
+    <div class="control-group">
+      {{d-button
+        class="btn-primary"
+        action="createBanner"
+        icon="plus"
+        label="banner.create"
+        disabled=createDisabled
+      }}
+    </div>
+  </div>
+
+  <div class="banner-list">
+    <h3>{{i18n "banner.existing_banners"}}</h3>
+    {{#if model.length}}
+      <table class="banner-table">
+        <thead>
+          <tr>
+            <th>{{i18n "banner.announcement"}}</th>
+            <th>{{i18n "banner.button_text"}}</th>
+            <th>{{i18n "banner.button_link"}}</th>
+            <th>{{i18n "banner.active"}}</th>
+            <th>{{i18n "banner.created_at"}}</th>
+            <th>{{i18n "banner.actions"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model as |banner|}}
+            <tr>
+              <td>{{banner.announcement}}</td>
+              <td>{{banner.button_text}}</td>
+              <td>{{banner.button_link}}</td>
+              <td>{{banner.active}}</td>
+              <td>{{format-date banner.created_at}}</td>
+              <td>
+                {{d-button
+                  class="btn-danger"
+                  action="deleteBanner"
+                  actionParam=banner
+                  icon="trash-alt"
+                  label="banner.delete"
+                }}
+                {{d-button
+                  class="btn-default"
+                  action="toggleActive"
+                  actionParam=banner
+                  icon=(if banner.active "toggle-off" "toggle-on")
+                  label=(if banner.active "banner.deactivate" "banner.activate")
+                }}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>{{i18n "banner.no_banners"}}</p>
+    {{/if}}
+  </div>
+</div>

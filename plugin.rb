@@ -7,6 +7,13 @@
 
 enabled_site_setting :category_custom_field_enabled
 register_asset 'stylesheets/common.scss'
+register_asset 'stylesheets/banner.scss'
+register_asset 'javascripts/discourse/templates/admin/plugins/banner.hbs'
+register_asset 'javascripts/discourse/controllers/admin-plugins-banner.js.es6'
+register_asset 'javascripts/discourse/routes/admin-plugins-banner.js.es6'
+register_asset 'javascripts/discourse/models/banner.js.es6'
+register_asset 'javascripts/discourse/widgets/site-banner.js.es6'
+register_asset 'javascripts/discourse/initializers/banner-initializer.js.es6'
 
 ## 
 # type:        introduction
@@ -19,6 +26,42 @@ register_asset 'stylesheets/common.scss'
 ##
 
 after_initialize do
+  # Load banner related files
+  load File.expand_path('../app/controllers/admin/banners_controller.rb', __FILE__)
+  load File.expand_path('../app/models/banner.rb', __FILE__)
+  load File.expand_path('../app/serializers/banner_serializer.rb', __FILE__)
+  
+  # Mount the banner routes
+  Discourse::Application.routes.append do
+    mount ::DiscourseEducationCategoryCustomField::Engine, at: "/"
+  end
+
+  module ::DiscourseEducationCategoryCustomField
+    class Engine < ::Rails::Engine
+      engine_name "discourse_education_category_custom_field"
+      isolate_namespace DiscourseEducationCategoryCustomField
+
+      config.after_initialize do
+        Discourse::Application.routes.append do
+          mount ::DiscourseEducationCategoryCustomField::Engine, at: "/"
+        end
+      end
+    end
+  end
+
+  require_dependency 'admin_constraint'
+  
+  # Add banner tab to admin sidebar
+  add_admin_route 'banner.title', 'banner'
+  
+  Discourse::Application.routes.append do
+    get '/admin/plugins/banner' => 'admin/plugins#index', constraints: AdminConstraint.new
+  end
+
+  # Load banner routes
+  require_relative 'lib/banner_route'
+  DiscourseEducationCategoryCustomField::BannerRoute.call(Rails.application)
+
   # Define our custom fields
   CUSTOM_FIELDS = {
     'post_view' => { type: :string, choices: ['grid', 'list'], default: 'list' },
