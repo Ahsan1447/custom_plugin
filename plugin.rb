@@ -25,21 +25,10 @@ after_initialize do
   load File.expand_path('../app/models/banner.rb', __FILE__)
   load File.expand_path('../app/serializers/banner_serializer.rb', __FILE__)
   
-  # Mount the banner routes
-  Discourse::Application.routes.append do
-    mount ::DiscourseEducationCategoryCustomField::Engine, at: "/"
-  end
-
   module ::DiscourseEducationCategoryCustomField
     class Engine < ::Rails::Engine
       engine_name "discourse_education_category_custom_field"
       isolate_namespace DiscourseEducationCategoryCustomField
-
-      config.after_initialize do
-        Discourse::Application.routes.append do
-          mount ::DiscourseEducationCategoryCustomField::Engine, at: "/"
-        end
-      end
     end
   end
 
