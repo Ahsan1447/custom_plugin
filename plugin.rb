@@ -8,11 +8,6 @@
 enabled_site_setting :category_custom_field_enabled
 register_asset 'stylesheets/common.scss'
 register_asset 'stylesheets/banner.scss'
-register_asset 'javascripts/discourse/controllers/admin-plugins-banner.js.es6'
-register_asset 'javascripts/discourse/routes/admin-plugins-banner.js.es6'
-register_asset 'javascripts/discourse/models/banner.js.es6'
-register_asset 'javascripts/discourse/widgets/site-banner.js.es6'
-register_asset 'javascripts/discourse/initializers/banner-initializer.js.es6'
 
 ## 
 # type:        introduction
