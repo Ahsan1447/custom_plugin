@@ -35,7 +35,7 @@ after_initialize do
   require_dependency 'staff_constraint'
   
   # Add banner tab to admin sidebar
-  add_admin_route 'banner.page_title', 'plugins.banner'
+  add_admin_route 'banner.page_title', 'banner'
   
   # Load banner routes
   require_relative 'lib/banner_route'
@@ -43,6 +43,7 @@ after_initialize do
   
   Discourse::Application.routes.append do
     get '/admin/plugins/banner' => 'admin/banners#index', constraints: StaffConstraint.new
+    get '/admin/plugins/banner/*path' => 'admin/banners#index', constraints: StaffConstraint.new
   end
 
   # Define our custom fields
