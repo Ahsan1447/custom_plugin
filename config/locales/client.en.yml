@@ -5,8 +5,8 @@ en:
       placeholder: "Enter a %{field}"
       heading: "%{field} settings"
     banner:
-      title: "Title"
-      page_title: "Banners"
+      title: "Banners"
+      page_title: "Banner Management"
       description: "Create and manage banners that will be displayed on your site."
       create_new: "Create New Banner"
       title_placeholder: "Enter banner title"

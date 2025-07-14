@@ -1,9 +1,6 @@
-import Route from "@ember/routing/route";
+import AdminPluginsRoute from "discourse/routes/admin-plugins";
 
-export default Route.extend({
-  controllerName: "admin-plugins-banner",
-  templateName: "admin/plugins/banner",
-  
+export default AdminPluginsRoute.extend({
   model() {
     return this.store.findAll("banner");
   },
