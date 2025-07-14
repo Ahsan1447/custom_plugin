@@ -1,12 +1,12 @@
-{{#if banner}}
+{{#if this.banner}}
   <div class="banner-content">
-    <div class="banner-title">{{banner.title}}</div>
-    {{#if banner.button_text}}
+    <div class="banner-title">{{this.banner.title}}</div>
+    {{#if this.banner.button_text}}
       <div class="banner-button">
         {{d-button
           class="btn-primary"
           action="navigateToLink"
-          label=banner.button_text
+          label=this.banner.button_text
         }}
       </div>
     {{/if}}
