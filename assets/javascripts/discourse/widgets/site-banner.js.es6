@@ -45,7 +45,7 @@ export default createWidget('site-banner', {
 
     const contents = [];
     
-    contents.push(h('div.banner-announcement', banner.announcement));
+    contents.push(h('div.banner-title', banner.title));
     
     if (banner.button_text) {
       contents.push(

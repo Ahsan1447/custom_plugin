@@ -35,7 +35,7 @@ after_initialize do
   require_dependency 'admin_constraint'
   
   # Add banner tab to admin sidebar
-  add_admin_route 'banner.title', 'banner'
+  add_admin_route 'banner.page_title', 'banner'
   
   Discourse::Application.routes.append do
     get '/admin/plugins/banner' => 'admin/plugins#index', constraints: AdminConstraint.new

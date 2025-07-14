@@ -4,19 +4,19 @@ import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
 export default Controller.extend({
-  newAnnouncement: "",
+  newTitle: "",
   newButtonText: "",
   newButtonLink: "",
   newActive: true,
 
-  createDisabled: computed("newAnnouncement", function() {
-    return !this.newAnnouncement || this.newAnnouncement.trim().length === 0;
+  createDisabled: computed("newTitle", function() {
+    return !this.newTitle || this.newTitle.trim().length === 0;
   }),
 
   actions: {
     createBanner() {
       const banner = this.store.createRecord("banner", {
-        announcement: this.newAnnouncement,
+        title: this.newTitle,
         button_text: this.newButtonText,
         button_link: this.newButtonLink,
         active: this.newActive
@@ -26,7 +26,7 @@ export default Controller.extend({
         .save()
         .then(() => {
           this.setProperties({
-            newAnnouncement: "",
+            newTitle: "",
             newButtonText: "",
             newButtonLink: "",
             newActive: true

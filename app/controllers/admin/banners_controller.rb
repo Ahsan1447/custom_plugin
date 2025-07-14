@@ -42,6 +42,6 @@ class Admin::BannersController < Admin::AdminController
   private
 
   def banner_params
-    params.require(:banner).permit(:announcement, :button_text, :button_link, :active)
+    params.require(:banner).permit(:title, :button_text, :button_link, :active)
   end
 end
