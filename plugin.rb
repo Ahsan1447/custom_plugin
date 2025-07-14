@@ -32,18 +32,18 @@ after_initialize do
     end
   end
 
-  require_dependency 'admin_constraint'
+  require_dependency 'staff_constraint'
   
   # Add banner tab to admin sidebar
-  add_admin_route 'banner.page_title', 'banner'
+  add_admin_route 'banner.page_title', 'plugins.banner'
   
-  Discourse::Application.routes.append do
-    get '/admin/plugins/banner' => 'admin/plugins#index', constraints: AdminConstraint.new
-  end
-
   # Load banner routes
   require_relative 'lib/banner_route'
   DiscourseEducationCategoryCustomField::BannerRoute.call(Rails.application)
+  
+  Discourse::Application.routes.append do
+    get '/admin/plugins/banner' => 'admin/banners#index', constraints: StaffConstraint.new
+  end
 
   # Define our custom fields
   CUSTOM_FIELDS = {

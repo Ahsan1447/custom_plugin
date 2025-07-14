@@ -22,7 +22,7 @@ export default createWidget('site-banner', {
     this.state.loading = true;
     ajax('/banner')
       .then(result => {
-        this.state.banner = result.banner;
+        this.state.banner = result;
       })
       .catch(error => {
         // Ignore 404 errors (no active banner)

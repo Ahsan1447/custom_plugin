@@ -1,6 +1,7 @@
 import Component from "@ember/component";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import DiscourseURL from "discourse/lib/url";
 
 export default Component.extend({
   classNames: ["site-banner"],
@@ -16,7 +17,7 @@ export default Component.extend({
     this.set("loading", true);
     ajax("/banner")
       .then(result => {
-        this.set("banner", result.banner);
+        this.set("banner", result);
       })
       .catch(error => {
         if (error.jqXHR && error.jqXHR.status !== 404) {
@@ -34,7 +35,7 @@ export default Component.extend({
       if (link) {
         if (link.startsWith("/")) {
           // Internal link
-          this.router.transitionTo(link.substring(1));
+          DiscourseURL.routeTo(link);
         } else {
           // External link
           window.open(link, "_blank");
